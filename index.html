@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ujian HOTS Rumus Excel</title>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Baloo+2:wght@600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef7f1;--sf:#fff;--ink:#16352a;--mu:#566b60;--ln:#cfe0d5;--ac:#138a4f;--acs:#dff3e6;--bad:#b4372a;--bads:#fde8e4;--wn:#8a5a00;--wns:#fff3cf;--sun:#ffc933;--hd:#e6f1ea;--on:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a14;--sf:#1a2620;--ink:#e8f1ea;--mu:#9bb0a3;--ln:#32443a;--ac:#5fc68a;--acs:#1e3a2a;--bad:#ff9a8f;--bads:#3b201d;--wn:#f1c36a;--wns:#3a2f14;--sun:#f1c36a;--hd:#243229;--on:#0d1a12}}
+:root[data-theme="dark"]{--bg:#0f1a14;--sf:#1a2620;--ink:#e8f1ea;--mu:#9bb0a3;--ln:#32443a;--ac:#5fc68a;--acs:#1e3a2a;--bad:#ff9a8f;--bads:#3b201d;--wn:#f1c36a;--wns:#3a2f14;--sun:#f1c36a;--hd:#243229;--on:#0d1a12}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 90px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Atkinson Hyperlegible",system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--sf);z-index:11}
+h1,h2,h3,.score{font-family:"Baloo 2","Atkinson Hyperlegible",system-ui,sans-serif;line-height:1.2}
+code,textarea,.mono{font-family:"JetBrains Mono",ui-monospace,Consolas,monospace}
+code{background:var(--hd);padding:1px 6px;border-radius:6px;font-size:.88em}
+main{max-width:820px;margin:0 auto;padding:16px}
+.card{background:var(--sf);border:2px solid var(--ln);border-bottom-width:5px;border-radius:18px;padding:18px;margin:0 0 18px}
+.hero{text-align:center;padding:20px 8px 8px}.hero .em{font-size:3.4rem;line-height:1}.hero h1{font-size:2.3rem;margin:.1em 0}.sub{color:var(--mu);max-width:560px;margin:.3em auto}
+.rh{font-size:1.3rem;margin:14px 0 8px}
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:18px}
+.rc{background:var(--sf);border:2px solid var(--ln);border-radius:16px;padding:12px 16px}.rc h3{margin:0 0 4px;font-size:1.1rem}.rc ul{margin:.2em 0;padding-left:1.2em;font-size:.95rem}.rc li{margin:.25em 0}
+.rc:nth-child(odd){border-top:5px solid var(--ac)}.rc:nth-child(even){border-top:5px solid var(--sun)}
+.bar{position:sticky;top:0;z-index:10;background:var(--sf);border-bottom:3px solid var(--ac);padding:8px 16px;padding-top:calc(8px + env(safe-area-inset-top,0px));display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.bl{display:flex;flex-direction:column;line-height:1.3;font-size:.92rem}.who{font-weight:700}
+.trk{display:flex;gap:5px;flex:1;min-width:120px;max-width:300px}.trk i{flex:1;height:10px;border-radius:99px;background:var(--ln)}.trk i.d{background:var(--ac)}.trk i.f{background:var(--bad)}.trk i.c{background:var(--sun);outline:2px solid var(--ac)}
+.tm{text-align:right;line-height:1.2}.tm b{font-size:1.45rem;font-variant-numeric:tabular-nums}.bar.low .tm b{color:var(--bad)}
+.cap{font-size:.82rem;color:var(--mu);margin:0}.tm .cap{display:block}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:12px;border:2px solid var(--ac);background:var(--sf);color:var(--ac);padding:8px 18px;min-height:46px;box-shadow:0 3px 0 var(--ln)}
+button.p{background:var(--ac);color:var(--on);box-shadow:0 3px 0 rgba(0,0,0,.28)}
+button:active:not(:disabled){transform:translateY(2px);box-shadow:none}button:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+input[type=text],textarea{width:100%;font-size:1rem;padding:10px 12px;border:2px solid var(--ln);border-radius:12px;background:var(--bg);color:var(--ink)}
+textarea{min-height:74px;resize:vertical;font-size:.95rem}label.l{display:block;font-weight:700;margin:6px 0 4px}
+.sc{overflow-x:auto;margin:8px 0}table{border-collapse:collapse;font-size:.9rem;white-space:nowrap}
+td,th{border:1px solid var(--ln);padding:3px 10px;text-align:left}th{background:var(--hd);color:var(--mu);font-weight:400;text-align:center}
+tr:nth-child(2) td{background:var(--hd);font-weight:700}td.n{text-align:right;font-variant-numeric:tabular-nums}.rt tr:nth-child(2) td{background:transparent;font-weight:400}
+.qh{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.qh h2{margin:0;font-size:1.35rem}
+.lv{font-size:.88rem;font-weight:700;border-radius:99px;padding:2px 12px;background:var(--acs);color:var(--ac)}.lv.h{background:var(--wns);color:var(--wn)}
+.qt{font-size:1.05rem}
+.pips{display:flex;align-items:center;gap:4px;margin-top:12px;flex-wrap:wrap;font-size:.85rem;color:var(--mu)}.pips i{width:12px;height:12px;border-radius:50%;background:var(--ac)}.pips i.u{background:var(--ln)}.pips span{margin-left:6px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.box{margin-top:12px;padding:12px 14px;border-radius:14px;border-left:6px solid}.box p{margin:.3em 0}
+.hint{background:var(--wns);border-color:var(--sun)}.ok{background:var(--acs);border-color:var(--ac);animation:pop .35s}.no{background:var(--bads);border-color:var(--bad)}
+@keyframes pop{0%{transform:scale(.96)}60%{transform:scale(1.015)}100%{transform:scale(1)}}@media(prefers-reduced-motion:reduce){.ok{animation:none}}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border:2px solid var(--ln);border-radius:14px;margin:8px 0;cursor:pointer;background:var(--sf)}
+.opt:has(input:checked){border-color:var(--ac);background:var(--acs)}.opt input{margin-top:6px;accent-color:var(--ac);width:18px;height:18px}
+.steps{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.chip{font-size:.92rem;border:2px solid var(--ln);border-radius:99px;padding:2px 12px;color:var(--mu);background:var(--sf)}.chip.on{background:var(--ac);border-color:var(--ac);color:var(--on);font-weight:700}.chip.off{opacity:.5}
+.score{font-size:3rem;font-weight:700;color:var(--ac);line-height:1.1}.stars{font-size:2rem;letter-spacing:4px}.hide{display:none}
+</style>
+</head>
+<body>
+<div class="bar hide" id="bar"><div class="bl"><span class="who" id="who"></span><span id="prog"></span></div><div class="trk" id="trk" aria-hidden="true"></div><div class="tm">⏱ <b id="tm">00:00</b><span class="cap">patokan <span id="tg"></span></span></div></div>
+<main>
+<section id="intro">
+<div class="hero"><div class="em" aria-hidden="true">📗</div><h1>Ayo Jago Excel!</h1><p class="sub">Bismillah, siap berlatih rumus? Ujian ini terdiri dari <b>5 project dan 20 soal</b>: fungsi dasar, IF, tanda $, VLOOKUP/HLOOKUP, dan gabungan.</p></div>
+<h2 class="rh">Aturan main, baca dulu ya</h2>
+<div class="rg">
+<div class="rc"><h3>🧭 Cara mengerjakan</h3><ul><li>Soal dikerjakan <b>berurutan</b>. Soal berikutnya terbuka setelah soal sekarang selesai.</li><li>Tulis jawabanmu, lalu klik <b>Lihat jawaban</b>.</li><li>Soal rumus: diawali <code>=</code>, pemisah koma (format English US), teks diapit tanda kutip dua.</li></ul></div>
+<div class="rc"><h3>🔁 Kesempatan</h3><ul><li>Tiap soal boleh dicoba <b>maksimal 10 kali</b>.</li><li>Setiap salah, nilai soal itu berkurang <b>10%</b>: benar di percobaan ke-1 = 100%, ke-2 = 90%, … ke-10 = 10%.</li><li>Setiap salah, kamu mendapat penjelasan kesalahannya (tanpa kunci jawaban).</li><li>Jika 10 kali belum benar, kunci jawaban dibuka, nilai soal itu 0, dan kamu lanjut ke soal berikutnya.</li></ul></div>
+<div class="rc"><h3>💡 Petunjuk</h3><ul><li>Tiap soal punya hingga dua petunjuk bertahap.</li><li>Memakai petunjuk mengurangi nilai soal itu: 1 petunjuk ×0,85 dan 2 petunjuk ×0,7.</li></ul></div>
+<div class="rc"><h3>⏱ Waktu</h3><ul><li>Timer berjalan naik dari 00:00 saat kamu klik Mulai ujian. <b>Tidak ada batas waktu.</b></li><li>Total waktu dicatat dan ikut jadi bahan penilaian. Patokan 3 menit per soal, jadi 60 menit untuk 20 soal.</li></ul></div>
+<div class="rc"><h3>⭐ Nilai akhir</h3><ul><li>80% ketepatan (percobaan dan petunjuk) + 20% waktu.</li><li>Selesai dalam patokan = nilai waktu 100%. Lewat patokan, nilai waktu turun bertahap, paling rendah 50%.</li></ul></div>
+<div class="rc"><h3>🙏 Penting</h3><ul><li>Jangan menutup atau me-refresh halaman. Pekerjaanmu akan hilang.</li><li>Kerjakan sendiri dengan jujur. Nilai langsung tampil setelah soal terakhir.</li></ul></div>
+</div>
+<div class="card"><label class="l" for="nm">Namamu</label><input type="text" id="nm" autocomplete="name" placeholder="Tulis nama lengkap">
+<label class="opt" style="margin-top:12px"><input type="checkbox" id="ag"><span>Saya sudah membaca dan memahami aturan di atas.</span></label>
+<div class="row"><button class="p" id="go" disabled>🚀 Mulai ujian</button></div></div>
+</section>
+<div id="exam" class="hide"><div class="card hide" id="res"></div><div class="steps" id="steps"></div><div id="projs"></div></div>
+</main>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SB_URL='https://fsrfvkaqbhfuptsooxiv.supabase.co',SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzcmZ2a2FxYmhmdXB0c29veGl2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2MzIxODEsImV4cCI6MjEwNjIwODE4MX0.vBx6UrLTYES3TPfLxw7IlN2mbqGXNRO3N-Q51ixOibA';
+const tbl=(rows,hd,cap)=>(cap?'<p class="cap">'+cap+'</p>':'')+'<div class="sc"><table>'+(hd?'<tr>'+hd.map(h=>'<th>'+h+'</th>').join('')+'</tr>':'')+rows.map(r=>'<tr>'+r.map(c=>'<td'+(typeof c=='number'?' class="n"':'')+'>'+c+'</td>').join('')+'</tr>').join('')+'</table></div>';
+const norm=(s,d)=>{let t=s.trim().replace(/^=/,'').replace(/[“”]/g,'"'),o='',q=false;for(const c of t){if(c=='"')q=!q;if(!q&&/\s/.test(c))continue;o+=c.toUpperCase()}o=o.replace(/FALSE/g,'0').replace(/TRUE/g,'1');return d?o.replace(/\$/g,''):o};
+const pre=r=>{if(!/^\s*=/.test(r))return'Rumus Excel harus diawali tanda =.';if(r.includes(';'))return'Pemisah argument memakai koma (,), bukan titik koma (;), pada format English (US).';const o=(r.match(/\(/g)||[]).length,c=(r.match(/\)/g)||[]).length;if(o!=c)return'Jumlah kurung buka “(” dan kurung tutup “)” tidak sama ('+o+' dan '+c+'). Setiap kurung buka harus punya pasangan.';if((r.match(/"/g)||[]).length%2)return'Tanda kutip dua tidak berpasangan.';return''};
+const F=(acc,dg,strict)=>raw=>{const m=pre(raw);if(m)return m;const d=!strict,n=norm(raw,d);if(acc.some(a=>norm(a,d)==n))return'';return dg(n,raw)||'Hasil rumusmu belum sesuai permintaan soal. Periksa lagi fungsi, rentang sel, dan urutan argument.'};
+const MC=(t,o,h,w)=>({lv:'Mudah',mc:1,t,o,h,w}),FQ=(lv,t,d,h,w,k,acc,dg,strict)=>({lv,t,d,h,w,k,c:F(acc,dg,strict)});
+
+const NAMES=['Fungsi Dasar','IF dan Perbandingan','Tanda $ dan Fill Down','VLOOKUP dan HLOOKUP','Gabungan dan Error'];
+const P=[{q:[
+{lv:'Mudah',mc:1,
+ t:`Perhatikan penulisan fungsi berikut:<br><code>=MAX(number1, [number2], …)</code><br>Pernyataan manakah yang benar?`,
+ o:[['number1 dan number2 sama-sama wajib diisi.',0,'Tanda [ ] justru berarti optional. number2 boleh tidak diisi.'],['number1 wajib diisi, number2 boleh dikosongkan.',1,'Tanda [ ] berarti optional, dan tanda … berarti argument boleh ditambah lagi.'],['Tanda … berarti argument harus diisi tepat dua kali.',0,'Tanda … berarti argument boleh ditambah lagi, jumlahnya tidak dibatasi dua.'],['Argument boleh dikosongkan semua karena namanya berbahasa Inggris.',0,'Bahasa nama argument tidak berpengaruh. number1 tidak ada tanda [ ], jadi wajib diisi.']],
+ h:['Perhatikan tanda [ ] di sekitar number2. Apa artinya?','[ ] = optional (boleh tidak diisi). … = boleh ditambah lagi. Argument tanpa [ ] wajib diisi.'],
+ w:'number1 tidak diberi [ ], jadi wajib. number2 ada di dalam [ ], jadi optional.'},
+{lv:'Mudah',
+ t:`Berikut setoran hafalan Rani (ayat per minggu). Tulis rumus di F2 untuk menghitung <b>rata-rata setoran per minggu</b> Rani (hasil 11).`,
+ d:tbl([['Nama','Minggu 1','Minggu 2','Minggu 3','Minggu 4','Rata-rata'],['Rani',8,12,10,14,'']],['','A','B','C','D','E','F'].slice(1)),
+ hd:1,h:['Rata-rata punya fungsi sendiri. Jangan dihitung manual dulu.','Fungsinya AVERAGE. Rentang yang dipakai mencakup keempat minggu pada baris 2.'],
+ w:'<code>=AVERAGE(B2:E2)</code> = (8+12+10+14)/4 = 11. Rentang B2:E2 mencakup empat minggu pada baris yang sama.',k:'=AVERAGE(B2:E2)',
+ c:F(['AVERAGE(B2:E2)','AVERAGE(B2,C2,D2,E2)','SUM(B2:E2)/4','SUM(B2:E2)/COUNT(B2:E2)'],n=>{
+  if(/^SUM\(B2:E2\)$/.test(n))return'SUM menjumlah semuanya (hasil 44). Soal meminta rata-rata (hasil 11), jadi pakai AVERAGE.';
+  if(/^(MAX|MIN)\(/.test(n))return'MAX/MIN mengambil nilai terbesar/terkecil, bukan rata-rata. Pakai AVERAGE.';
+  if(/^AVERAGE\(/.test(n))return'Rentang belum mencakup keempat minggu. Minggu 1 sampai 4 ada di B2:E2.'})},
+{lv:'HOTS · Menganalisis',
+ t:`Pak Budi menulis <code>=B2+C2+D2</code> di E2 (hasil 245) dan menyalinnya ke E3, tetapi E3 tampil <code>#VALUE!</code>. Sinta tidak hadir di kuis 2, sehingga C3 berisi teks. Tulis rumus pengganti di E3 yang tetap menghasilkan <b>170</b> tanpa error.`,
+ d:tbl([['Nama','Kuis 1','Kuis 2','Kuis 3','Total'],['Andi',85,70,90,245],['Sinta',80,'tidak hadir',90,'#VALUE!']],['A','B','C','D','E']),
+ h:['Mengapa operator + gagal pada C3? Apa yang terjadi bila teks ikut dihitung?','Fungsi penjumlahan Excel mengabaikan teks. Jumlahkan B3 sampai D3 dengan fungsi itu.'],
+ w:'Operator + tidak bisa memproses teks (#VALUE!). <code>=SUM(B3:D3)</code> mengabaikan teks sehingga hasilnya 80+90 = 170.',k:'=SUM(B3:D3)',
+ c:F(['SUM(B3:D3)','SUM(B3,C3,D3)','SUM(B3,D3)','B3+D3'],n=>{
+  if(/B3\+C3/.test(n)||/C3\+/.test(n))return'C3 masih ikut dijumlah dengan operator +. Teks pada C3 tidak bisa dihitung dengan +, sehingga #VALUE! tetap muncul. SUM mengabaikan teks.';
+  if(/^AVERAGE/.test(n))return'AVERAGE menghasilkan rata-rata (85), bukan total. Soal meminta total 170.';
+  if(/^(MAX|MIN)/.test(n))return'MAX/MIN hanya mengambil satu nilai, bukan total.'})},
+{lv:'HOTS · Mengevaluasi',
+ t:`Dari data nilai praktik berikut, tulis <b>satu rumus</b> yang menampilkan <b>nama</b> siswa dengan nilai <b>terendah</b> (hasil “Fikri”). Rumus harus tetap benar bila urutan data berubah.`,
+ d:tbl([['Nama','Nilai'],['Rani',78],['Dimas',92],['Salsa',85],['Fikri',67],['Nadia',88]],['A','B'],'Nama di A2:A6, Nilai di B2:B6.'),
+ h:['Dua langkah: cari posisi nilai terkecil, lalu ambil nama pada posisi itu.','MATCH(MIN(B2:B6), B2:B6, 0) menghasilkan posisi. INDEX mengambil dari kolom nama.'],
+ w:'MIN menemukan 67, MATCH mencari posisinya di B2:B6 (ke-4), INDEX mengambil urutan ke-4 dari A2:A6 = Fikri. Argument 0 wajib karena data tidak terurut.',k:'=INDEX(A2:A6,MATCH(MIN(B2:B6),B2:B6,0))',
+ c:F(['INDEX(A2:A6,MATCH(MIN(B2:B6),B2:B6,0))'],n=>{
+  if(/^MIN\(/.test(n))return'MIN hanya menghasilkan angka 67, bukan nama. Butuh MATCH (posisi) dan INDEX (mengambil nama).';
+  if(/MAX/.test(n))return'MAX mengambil nilai tertinggi (Dimas). Soal meminta nilai terendah, pakai MIN.';
+  if(/MATCH\(MIN\(B2:B6\),B2:B6\)/.test(n))return'match_type dikosongkan berarti 1 (mendekati, butuh data terurut naik). Data ini tidak terurut, hasil bisa salah. Tambahkan 0.';
+  if(/^INDEX\(B/.test(n))return'array INDEX harus kolom nama (A2:A6). Kolom B berisi nilai sehingga hasilnya angka.'})}
+]},
+{q:[
+MC(`Sel A1 berisi angka 40. Apa hasil rumus <code>=A1&gt;=40</code>?`,[['FALSE',0,'Operator &gt;= berarti lebih besar <b>atau sama</b>. 40 sama dengan 40, jadi syaratnya terpenuhi.'],['TRUE',1,'40 sama dengan 40, dan &gt;= menerima nilai yang sama. Hasilnya TRUE.'],['40',0,'Operator perbandingan menghasilkan TRUE atau FALSE, bukan angkanya.'],['#NAME?',0,'#NAME? muncul karena salah ketik nama fungsi. Rumus ini tidak salah tulis.']],['Hasil uji perbandingan hanya dua kemungkinan: TRUE atau FALSE.','Arti &gt;= adalah lebih besar atau sama dengan. Bandingkan 40 dengan 40.'],'Operator &gt;= bernilai TRUE bila angkanya lebih besar atau sama.'),
+FQ('HOTS · Menganalisis',`Siti menulis <code>=IF(B2&gt;=70,"Lulus",IF(B2&gt;=85,"Istimewa","Remedial"))</code>. Dimas bernilai 92, tetapi hasilnya “Lulus”, padahal seharusnya “Istimewa”. Tulis rumus perbaikan untuk B2 dengan aturan: ≥ 85 “Istimewa”, 70 sampai 84 “Lulus”, di bawah 70 “Remedial”.`,tbl([['Nama','Nilai'],['Dimas',92]],['A','B']),['IF bertingkat dibaca dari syarat pertama. Apa yang terjadi pada 92 di syarat pertama milik Siti?','Letakkan syarat yang paling ketat (≥ 85) lebih dulu.'],'92 sudah memenuhi B2&gt;=70 di IF pertama, sehingga Excel berhenti di “Lulus” dan tidak pernah menguji ≥ 85. Syarat paling ketat harus diuji lebih dulu.','=IF(B2>=85,"Istimewa",IF(B2>=70,"Lulus","Remedial"))',['IF(B2>=85,"Istimewa",IF(B2>=70,"Lulus","Remedial"))','IF(B2<70,"Remedial",IF(B2<85,"Lulus","Istimewa"))'],n=>{
+ if((n.match(/IF\(/g)||[]).length<2)return'Tiga hasil butuh IF bertingkat (dua IF). Satu IF hanya punya dua pilihan.';
+ if(/^IF\(B2>=70/.test(n))return'Urutannya masih sama seperti rumus Siti: 92 berhenti di syarat >=70 dan jadi “Lulus”. Uji >=85 lebih dulu.';
+ if(!/ISTIMEWA/.test(n)||!/REMEDIAL/.test(n)||!/LULUS/.test(n))return'Teks hasil belum lengkap atau salah ketik: “Istimewa”, “Lulus”, “Remedial”.'}),
+FQ('HOTS · Mencipta',`Guru membuat predikat dari skor di C2: ≥ 90 “A”, 80 sampai 89 “B”, 70 sampai 79 “C”, di bawah 70 “D”. Tulis rumusnya di D2.`,tbl([['Nama','Kelas','Skor'],['Salsa','7A',84]],['A','B','C']),['Ada empat hasil, jadi dibutuhkan tiga IF yang saling bersarang.','Mulai dari yang paling ketat: C2&gt;=90, lalu &gt;=80, lalu &gt;=70, sisanya “D”.'],'Tiga IF bersarang menguji ≥ 90, lalu ≥ 80, lalu ≥ 70. Skor 84 gagal di syarat pertama, lolos di syarat kedua, jadi hasilnya “B”.','=IF(C2>=90,"A",IF(C2>=80,"B",IF(C2>=70,"C","D")))',['IF(C2>=90,"A",IF(C2>=80,"B",IF(C2>=70,"C","D")))','IF(C2<70,"D",IF(C2<80,"C",IF(C2<90,"B","A")))'],n=>{
+ if((n.match(/IF\(/g)||[]).length<3)return'Empat hasil butuh tiga IF bersarang (jumlah IF = jumlah hasil dikurangi 1).';
+ if(/^IF\(C2>=(70|80)/.test(n))return'Urutan syarat salah. Skor 84 akan berhenti di syarat pertama yang longgar. Mulai dari >=90.'}),
+FQ('HOTS · Mengevaluasi',`Beasiswa diberikan jika (Nilai ≥ 80 <b>dan</b> Hadir ≥ 90) <b>atau</b> Juara = “Ya”. Tulis rumus di E2 yang menghasilkan “Lolos” atau “Tidak”.`,tbl([['Nama','Nilai','Hadir','Juara'],['Dimas',70,98,'Ya'],['Salsa',78,85,'Tidak']],['A','B','C','D']),['Pisahkan dua jalur: jalur pertama butuh dua syarat sekaligus (AND), jalur kedua berdiri sendiri.','Gabungkan kedua jalur dengan OR: OR(AND(Nilai, Hadir), Juara).'],'Jalur pertama AND(B2&gt;=80,C2&gt;=90). Jalur kedua D2="Ya". OR menggabungkan keduanya. Dimas lolos lewat jalur juara walau nilainya 70.','=IF(OR(AND(B2>=80,C2>=90),D2="Ya"),"Lolos","Tidak")',['IF(OR(AND(B2>=80,C2>=90),D2="Ya"),"Lolos","Tidak")','IF(OR(D2="Ya",AND(B2>=80,C2>=90)),"Lolos","Tidak")'],n=>{
+ if(!/OR\(/.test(n))return'Kata “atau juara” membutuhkan OR. Tanpa OR, juara tidak bisa meloloskan siswa sendirian.';
+ if(!/AND\(/.test(n))return'Syarat nilai dan hadir harus terpenuhi bersamaan, jadi dibungkus AND.';
+ if(/^IF\(AND/.test(n))return'AND di luar membuat semua syarat wajib, termasuk juara. Bungkus yang terluar dengan OR.'})
+]},
+{q:[
+MC(`Pada alamat sel <code>B$15</code>, bagian mana yang terkunci saat rumus disalin dengan Fill Down?`,[['Hanya kolom B',0,'Tanda $ berada sebelum angka 15, jadi yang dikunci baris 15, bukan kolom B.'],['Hanya baris 15',1,'$ sebelum 15 mengunci baris. Kolom B boleh bergeser jika rumus disalin ke samping.'],['Kolom B dan baris 15',0,'Itu penulisan $B$15. Pada B$15 hanya baris yang memakai $.'],['Tidak ada yang terkunci',0,'Itu penulisan B15 (relative reference). B$15 punya satu tanda $.']],['Lihat posisi tanda $. Ia mengunci bagian yang ditulis tepat sesudahnya.','$ sebelum angka berarti baris terkunci. $ sebelum huruf berarti kolom terkunci.'],'B$15: $ ada sebelum angka 15, jadi hanya baris yang terkunci.'),
+FQ('HOTS · Menganalisis',`Rumus di C2 adalah <code>=B2+B2*$E$1</code> (E1 berisi tarif pajak 0,1), lalu di-Fill Down sampai C5. Tulis isi rumus yang muncul di <b>C5</b>.`,tbl([['Barang','Harga','Total'],['Pensil',3000,'=B2+B2*$E$1'],['Buku',7500,''],['Penggaris',5000,''],['Penghapus',2000,'']],['A','B','C'],'Tarif pajak ada di E1 (nilai 0,1).'),['Dari C2 ke C5, baris bertambah berapa? Alamat mana yang ikut bergeser?','B2 (tanpa $) ikut bergeser. $E$1 tetap.'],'Alamat tanpa $ ikut bergeser (B2 menjadi B5), sedangkan $E$1 terkunci dan tetap.','=B5+B5*$E$1',['B5+B5*$E$1'],(n,r)=>{
+ if(/E[2-5]/.test(n))return'$E$1 tidak ikut bergeser; tulis tetap $E$1. Mungkin kamu mengubah barisnya?';
+ if(!/\$E\$1/.test(n)&&/E1/.test(n))return'Tarif pajak ditulis $E$1 (terkunci) di C2, jadi di C5 tetap $E$1. Jangan menghapus tanda $-nya.';
+ if(/E[2-5]/.test(n))return'E1 ikut bergeser, padahal sudah dikunci dengan $E$1. Yang terkunci tidak berubah.';
+ if(/B2/.test(n))return'B2 tidak dikunci, jadi ikut bergeser. Dari C2 ke C5 baris naik 3: B2 menjadi B5.'},true),
+FQ('HOTS · Mengevaluasi',`Dina menulis <code>=B2*F1</code> di C2 (diskon = harga × tarif diskon di F1 = 0,1), lalu Fill Down. C2 benar (300), tetapi C3 dan C4 bernilai 0. Tulis rumus C2 yang aman untuk Fill Down.`,tbl([['Barang','Harga','Diskon'],['Pensil',3000,300],['Buku',7500,0],['Penggaris',5000,0]],['A','B','C'],'Tarif diskon ada di F1 (nilai 0,1).'),['Di C3 rumusnya menjadi =B3*F2. Apa isi F2?','F1 harus dikunci agar tetap F1, sedangkan B2 harus bergeser.'],'F1 tanpa $ bergeser menjadi F2, F3 (kosong = 0), sehingga hasilnya 0. Dengan $F$1 tarif tetap, sementara B2 bergeser mengikuti barangnya.','=B2*$F$1',['B2*$F$1','B2*F$1'],(n,r)=>{
+ if(!/\$/.test(r))return'F1 belum dikunci. Saat Fill Down F1 menjadi F2, F3 yang kosong (= 0), sehingga hasilnya 0.';
+ if(/\$B/.test(n))return'B2 ikut dikunci, jadi semua baris memakai harga Pensil. Harga harus bergeser mengikuti barang.'},true),
+FQ('HOTS · Mencipta',`Buat tabel perkalian. Angka kolom ada di B1:E1, angka baris ada di A2:A4. Tulis <b>satu rumus</b> di B2 yang bisa disalin ke semua sel B2:E4 (Fill Down dan Fill Right) tanpa diedit lagi.`,tbl([['',1,2,3,4],[1,'?','','',''],[2,'','','',''],[3,'','','','']],['A','B','C','D','E']),['Saat disalin ke bawah, angka baris harus berganti baris tetapi tetap di kolom A. Saat disalin ke samping, angka kolom harus berganti kolom tetapi tetap di baris 1.','Kolom A dikunci kolomnya ($A2). Baris 1 dikunci barisnya (B$1).'],'<code>$A2</code> mengunci kolom A, baris boleh bergeser. <code>B$1</code> mengunci baris 1, kolom boleh bergeser. Ini disebut mixed reference.','=$A2*B$1',['$A2*B$1','B$1*$A2'],(n,r)=>{
+ if(/\$A\$2/.test(n)||/B\$1/.test(n)==false&&/\$B\$1/.test(n))return'Terlalu banyak dikunci. $A$2 atau $B$1 tidak pernah bergeser, sehingga semua sel hasilnya sama.';
+ if(!/\$A2/.test(n))return'Angka baris di kolom A harus mengunci kolom A saja ($A2), agar tidak bergeser ke B, C, … saat Fill Right.';
+ if(!/B\$1/.test(n))return'Angka kolom di baris 1 harus mengunci baris 1 saja (B$1), agar tidak bergeser ke bawah saat Fill Down.'},true)
+]},
+{q:[
+MC(`Data penjualan disusun mendatar: judul <b>Jan, Feb, Mar, Apr</b> berada di satu baris (B1:E1) dan angkanya di baris 2. Fungsi mana yang tepat untuk mencari “Feb”?`,[['VLOOKUP',0,'VLOOKUP mencari di kolom paling kiri (tabel tersusun ke bawah). Judulnya mendatar.'],['HLOOKUP',1,'HLOOKUP mencari di baris paling atas. Cocok untuk judul yang mendatar.'],['COUNTIF',0,'COUNTIF menghitung sel yang memenuhi syarat, bukan mengambil data.'],['AVERAGE',0,'AVERAGE menghitung rata-rata, bukan mencari data.']],['Perhatikan arah judul tabel: ke bawah atau ke samping?','H = horizontal (mendatar), V = vertical (ke bawah).'],'Judul tersusun mendatar sehingga fungsi yang tepat adalah HLOOKUP.'),
+FQ('HOTS · Menganalisis',`Rani menulis <code>=VLOOKUP("B-02",$B$2:$C$5,2,0)</code> untuk mencari harga Buku dan hasilnya <code>#N/A</code>. Temukan kesalahannya, lalu tulis rumus yang benar agar hasilnya 7500.`,tbl([['Kode','Nama','Harga'],['B-01','Pensil',3000],['B-02','Buku',7500],['B-03','Penggaris',5000],['B-04','Penghapus',2000]],['A','B','C']),['Di kolom mana kode “B-02” berada? lookup_value harus ada di kolom pertama table_array.','Setelah table_array dimulai dari kolom A, harga ada di kolom ke berapa dalam A:C?'],'Kode ada di kolom A, tetapi table_array mulai dari B sehingga #N/A. Dengan A2:C5, Harga adalah kolom ke-3.','=VLOOKUP("B-02",$A$2:$C$5,3,0)',['VLOOKUP("B-02",$A$2:$C$5,3,0)'],n=>{
+ if(/^VLOOKUP\("B-02",B2/.test(n))return'Kode “B-02” masih tidak berada di kolom pertama table_array (mulai dari B). Mulai dari kolom A.';
+ if(/A2:C5,2/.test(n))return'Kolom ke-2 dari A:C adalah Nama (hasil “Buku”), bukan Harga. Harga adalah kolom ke-3.';
+ if(/,1\)$/.test(n))return'range_lookup 1 (mendekati) tidak cocok untuk kode teks. Pakai 0.'}),
+FQ('HOTS · Mencipta',`Tulis rumus di C2 yang mengubah nilai Dimas (B2) menjadi predikat memakai Tabel Predikat di E2:F5. Nilai 82 harus menjadi “B” (batas bawah: 0 D, 60 C, 75 B, 90 A).`,tbl([['Nama','Nilai',''],['Dimas',82,'?']],['A','B','C'])+tbl([[0,'D'],[60,'C'],[75,'B'],[90,'A']],['E','F'],'Tabel Predikat (E2:F5)'),['82 tidak ada di kolom E. Pencarian apa yang boleh mengambil batas terdekat?','Gunakan range_lookup 1 (TRUE). Tabel sudah terurut naik.'],'range_lookup 1 mengambil batas terbesar yang ≤ 82, yaitu 75, sehingga hasilnya “B”. Dengan 0, 82 tidak ditemukan dan hasilnya #N/A.','=VLOOKUP(B2,$E$2:$F$5,2,1)',['VLOOKUP(B2,$E$2:$F$5,2,1)','VLOOKUP(B2,$E$2:$F$5,2)'],n=>{
+ if(/,0\)$/.test(n))return'range_lookup 0 menuntut nilai sama persis, padahal 82 tidak ada di kolom E, sehingga #N/A. Data bertingkat memakai 1/TRUE.';
+ if(/,1,/.test(n))return'col_index_num 1 mengambil kolom E (angka batas). Predikat ada di kolom ke-2.'}),
+FQ('HOTS · Mengevaluasi',`Tulis rumus yang menghitung <b>selisih penjualan April dikurangi Maret</b> memakai HLOOKUP (hasil 90).`,tbl([['Bulan','Jan','Feb','Mar','Apr'],['Terjual',120,150,90,180]],['A','B','C','D','E'],'Tabel di B1:E2.'),['Satu HLOOKUP mengambil satu bulan, jadi dibutuhkan dua HLOOKUP yang dikurangkan.','HLOOKUP("Apr",B1:E2,2,0) − HLOOKUP("Mar",B1:E2,2,0). Perhatikan urutan pengurangan.'],'April (180) dikurangi Maret (90) = 90. Urutan pengurangan menentukan tanda hasil.','=HLOOKUP("Apr",$B$1:$E$2,2,0)-HLOOKUP("Mar",$B$1:$E$2,2,0)',['HLOOKUP("Apr",$B$1:$E$2,2,0)-HLOOKUP("Mar",$B$1:$E$2,2,0)'],n=>{
+ if((n.match(/HLOOKUP/g)||[]).length<2)return'Butuh dua HLOOKUP: satu untuk April, satu untuk Maret, lalu dikurangkan.';
+ if(/^HLOOKUP\("MAR".*-HLOOKUP\("APR"/.test(n))return'Urutan terbalik: Maret dikurangi April menghasilkan -90. Soal meminta April dikurangi Maret.';
+ if(/,1\)/.test(n)&&!/,1,/.test(n))return'row_index_num atau range_lookup salah. Angka penjualan di baris ke-2, dan range_lookup 0 untuk sama persis.'})
+]},
+{q:[
+MC(`Sel menampilkan <code>#DIV/0!</code>. Penyebab yang paling mungkin adalah …`,[['Nama fungsi salah ketik',0,'Salah ketik nama fungsi menghasilkan #NAME?.'],['Ada pembagian dengan nol, atau AVERAGE pada rentang yang tidak berisi angka',1,'Betul. Pembagian dengan nol atau AVERAGE tanpa angka menghasilkan #DIV/0!.'],['Nilai yang dicari VLOOKUP tidak ditemukan',0,'Itu menghasilkan #N/A.'],['Teks ikut dihitung dengan operator +',0,'Itu menghasilkan #VALUE!.']],['Ingat angka 0 di tengah nama errornya: DIV artinya pembagian (division).','/0 berarti dibagi nol.'],'#DIV/0! berarti pembagian dengan nol (termasuk AVERAGE pada rentang tanpa angka).'),
+FQ('HOTS · Mengevaluasi',`Dina menulis <code>=AVERAGEIF(B2:B7,"7A",C2:C7)</code> untuk rata-rata nilai kelas 7A dan hasilnya salah. Tulis rumus yang benar (hasil 85).`,tbl([['Nama','Kelas','Nilai'],['Rani','7A',80],['Dimas','7B',70],['Salsa','7A',90],['Fikri','7B',60],['Nadia','7A',85],['Bilal','7B',75]],['A','B','C'],'Kelas di B2:B7, Nilai di C2:C7.'),['Urutan argument AVERAGEIF: range (yang diperiksa), criteria (syarat), average_range (yang dirata-rata).','Dalam rumus Dina, range yang diperiksa adalah kolom Kelas atau kolom Nilai?'],'range = Kelas (B2:B7), criteria = “7A”, average_range = Nilai (C2:C7). (80+90+85)/3 = 85. Rumus Dina memeriksa kolom Nilai dan merata-rata kolom Kelas.','=AVERAGEIF(B2:B7,"7A",C2:C7)',['AVERAGEIF(B2:B7,"7A",C2:C7)'],n=>{
+ if(/^AVERAGEIF\(C2:C7/.test(n))return'Urutan argument terbalik: range yang diperiksa harus kolom Kelas (B2:B7), dan average_range kolom Nilai (C2:C7).';
+ if(/^AVERAGE\(/.test(n))return'AVERAGE merata-rata semua tanpa syarat. Dibutuhkan AVERAGEIF.';
+ if(/^(SUMIF|COUNTIF)/.test(n))return'Fungsi itu menjumlah atau menghitung, bukan merata-rata. Pakai AVERAGEIF.';
+ if(!/"7A"/.test(n))return'criteria “7A” harus diapit tanda kutip dua.'}),
+FQ('HOTS · Mencipta',`Bendahara ingin total uang kas <b>kelas 7B saja</b>. Tulis rumusnya (hasil 100000).`,tbl([['Kelas','Uang kas'],['7A',50000],['7B',30000],['7A',20000],['7B',45000],['7C',10000],['7B',25000]],['A','B'],'Kelas di A2:A7, Uang kas di B2:B7.'),['Gunakan fungsi yang menjumlah dengan syarat. Urutan: range, criteria, sum_range.','range = kolom Kelas, criteria = “7B”, sum_range = kolom Uang kas.'],'SUMIF memeriksa kolom Kelas, memilih baris “7B”, lalu menjumlah Uang kas: 30000+45000+25000 = 100000.','=SUMIF(A2:A7,"7B",B2:B7)',['SUMIF(A2:A7,"7B",B2:B7)'],n=>{
+ if(/^SUM\(/.test(n))return'SUM menjumlah semua baris (180000). Dibutuhkan SUMIF agar hanya kelas 7B yang dijumlah.';
+ if(/^COUNTIF/.test(n))return'COUNTIF menghitung banyak baris (3), bukan menjumlah uang. Pakai SUMIF.';
+ if(/^SUMIF\(B2:B7/.test(n))return'Urutan argument terbalik: argument pertama adalah range yang diperiksa (Kelas A2:A7).';
+ if(!/"7B"/.test(n))return'criteria “7B” harus diapit tanda kutip dua.'}),
+FQ('HOTS · Mencipta',`Sel E2 berisi kode “K9”. Tulis rumus yang mencari harganya di tabel A2:B4 dan menampilkan <b>“Tidak ada”</b> bila kode tidak ditemukan, bukan <code>#N/A</code>.`,tbl([['Kode','Harga'],['K1',3000],['K2',7500],['K3',5000]],['A','B'],'Kode yang dicari ada di E2 (isinya K9).'),['Dua fungsi digabung: VLOOKUP untuk mencari, dan satu fungsi pembungkus untuk menangani error.','IFERROR(value, value_if_error): value = VLOOKUP-nya, value_if_error = “Tidak ada”.'],'VLOOKUP menghasilkan #N/A karena K9 tidak ada. IFERROR menangkap error itu dan menampilkan “Tidak ada” sebagai gantinya.','=IFERROR(VLOOKUP(E2,$A$2:$B$4,2,0),"Tidak ada")',['IFERROR(VLOOKUP(E2,$A$2:$B$4,2,0),"Tidak ada")'],n=>{
+ if(!/^IFERROR\(/.test(n))return'Untuk menangkap error dan menampilkan pesan ramah, bungkus VLOOKUP dengan IFERROR.';
+ if(/,1\),/.test(n))return'range_lookup 1 (mendekati) tidak cocok untuk kode teks, dan bisa mengembalikan harga yang salah. Pakai 0.';
+ if(!/"TIDAK ADA"/.test(n))return'Pesan error harus tepat “Tidak ada”, diapit tanda kutip dua.'})
+]}
+];
+const MAX=10,WT=.2;let gi=0,start,tmr,cur=0,done=false;const st=[];
+P.forEach((p,pi)=>p.q.forEach(q=>{q.id=gi;q.pi=pi;st[gi]={};gi++}));
+const N=gi,TGT=N*180,Qs=P.flatMap(p=>p.q);
+$('#steps').innerHTML=NAMES.map((n,i)=>`<span class="chip${P[i]?'':' off'}" ${P[i]?'':'title="Belum dibuat pada sampel ini"'}>${i+1}. ${n}</span>`).join('');
+$('#trk').innerHTML=Qs.map(()=>'<i></i>').join('');
+$('#projs').innerHTML=P.map((p,pi)=>`<section class="proj hide" id="p${pi}"><h1>Project ${pi+1}: ${NAMES[pi]}</h1>`+p.q.map((q,j)=>`<article class="card${q.id?' hide':''}" id="q${q.id}"><div class="qh"><h2>📝 Soal ${j+1}</h2><span class="lv ${q.lv=='Mudah'?'':'h'}">${q.lv=='Mudah'?'🌱 Mudah':'🔥 '+q.lv}</span></div><p class="qt">${q.t}</p>${q.d||''}${q.mc?q.o.map((o,k)=>`<label class="opt"><input type="radio" name="r${q.id}" value="${k}"><span>${o[0]}</span></label>`).join(''):`<label class="l" for="a${q.id}">Jawabanmu</label><textarea id="a${q.id}" spellcheck="false" placeholder="Tulis rumus, diawali ="></textarea>`}<div class="pips" id="pp${q.id}"></div><div class="row"><button data-h="${q.id}">💡 Petunjuk</button><button class="p" data-c="${q.id}">✅ Lihat jawaban</button></div><div id="h${q.id}"></div><div id="f${q.id}"></div><div id="nx${q.id}"></div></article>`).join('')+'</section>').join('');
+function pips(i){const a=st[i].a||0;$('#pp'+i).innerHTML=Array.from({length:MAX},(_,k)=>`<i class="${k<a?'u':''}"></i>`).join('')+`<span>Kesempatan tersisa: ${MAX-a} dari ${MAX}</span>`}
+Qs.forEach((q,i)=>pips(i));
+function open(i){cur=i;const q=Qs[i];document.querySelectorAll('.proj').forEach((e,k)=>e.classList.toggle('hide',k!=q.pi));$('#q'+i).classList.remove('hide');document.querySelectorAll('.steps .chip').forEach((b,k)=>b.classList.toggle('on',k==q.pi));if(!st[i].t0)st[i].t0=Date.now();if(i==0||Qs[i-1].pi!=q.pi)scrollTo(0,0);else $('#q'+i).scrollIntoView({behavior:'smooth'});upd()}
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.h!=null)hint(+b.dataset.h);if(b.dataset.c!=null)check(+b.dataset.c);if(b.dataset.nx!=null){const i=+b.dataset.nx;i==N-1?finish():open(i+1)}});
+function hint(i){const s=st[i],q=Qs[i];s.h=Math.min((s.h||0)+1,q.h.length);$('#h'+i).innerHTML=q.h.slice(0,s.h).map((x,j)=>`<div class="box hint"><b>💡 Petunjuk ${j+1}:</b> ${x}</div>`).join('');const b=document.querySelector(`[data-h="${i}"]`);b.textContent=s.h<q.h.length?`💡 Petunjuk ${s.h+1}`:'Petunjuk habis';b.disabled=s.h>=q.h.length}
+function lock(i){const q=Qs[i],s=st[i];s.done=1;s.sec=Math.round((Date.now()-s.t0)/1000);document.querySelectorAll(`#q${i} input,#q${i} textarea,#q${i} button`).forEach(b=>b.disabled=true);$('#nx'+i).innerHTML=`<div class="row"><button class="p" data-nx="${i}">${i==N-1?'🏁 Kumpulkan ujian':Qs[i+1].pi!=q.pi?'➡️ Lanjut ke project berikutnya':'➡️ Soal berikutnya'}</button></div>`}
+function check(i){const q=Qs[i],s=st[i];if(s.done)return;let msg='',ans=false,jw='';
+ if(q.mc){const r=document.querySelector(`input[name="r${i}"]:checked`);if(r){ans=true;const o=q.o[+r.value];jw=o[0];if(!o[1])msg=o[2]}}
+ else{const raw=$('#a'+i).value;if(raw.trim()){ans=true;jw=raw.trim();msg=q.c(raw)}}
+ if(!ans){$('#f'+i).innerHTML='<div class="box hint">✍️ Isi jawabanmu dulu, lalu klik Lihat jawaban.</div>';return}
+ s.a=(s.a||0)+1;
+ s.try=(s.try||[]).concat([{ke:s.a,jawaban:jw,benar:!msg}]);
+ if(!msg){s.ok=1;$('#f'+i).innerHTML=`<div class="box ok"><p>🎉 <b>Mantap, benar!</b> ${s.a>1?'Berhasil di percobaan ke-'+s.a+'.':'Langsung benar di percobaan pertama!'}</p><p>${q.w}</p></div>`;lock(i)}
+ else if(s.a>=MAX){s.fail=1;const key=q.mc?esc(q.o.find(o=>o[1])[0]):'<code>'+esc(q.k)+'</code>';$('#f'+i).innerHTML=`<div class="box no"><p>📖 <b>Kesempatan habis.</b> ${esc(msg)}</p><p><b>Kunci jawaban:</b> ${key}</p><p>${q.w}</p><p>Tidak apa-apa, pelajari pembahasannya lalu lanjut ya.</p></div>`;lock(i)}
+ else $('#f'+i).innerHTML=`<div class="box no"><p>🤔 <b>Belum tepat.</b> ${esc(msg)}</p><p>Ayo coba lagi! Jika benar di percobaan berikutnya, nilai soal ini ${100-10*s.a}%.</p></div>`;
+ pips(i);upd()}
+function upd(){$('#prog').textContent=st.filter(s=>s.done).length+' dari '+N+' soal selesai';document.querySelectorAll('#trk i').forEach((e,k)=>{const s=st[k];e.className=s.fail?'f':s.done?'d':k==cur?'c':''})}
+const fmt=t=>String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0');
+const el=()=>Math.round((Date.now()-start)/1000);
+function tick(){$('#tm').textContent=fmt(el());$('#bar').classList.toggle('low',el()>TGT)}
+$('#tg').textContent=fmt(TGT);const gate=()=>$('#go').disabled=!($('#ag').checked&&$('#nm').value.trim());$('#ag').onchange=gate;$('#nm').oninput=gate;
+$('#go').onclick=()=>{$('#intro').classList.add('hide');$('#exam').classList.remove('hide');$('#bar').classList.remove('hide');$('#who').textContent='👤 '+$('#nm').value.trim();start=Date.now();tick();tmr=setInterval(tick,1000);open(0)};
+const sq=s=>s.fail?0:Math.max(0,1-.1*(s.a-1))*[1,.85,.7][Math.min(s.h||0,2)];
+const r1d=x=>Math.round(x*10)/10;
+const uuid=()=>{try{if(window.crypto&&crypto.randomUUID)return crypto.randomUUID()}catch(e){}return'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c=='x'?r:(r&3|8)).toString(16)})};
+function simpan(e,kt,tf,nl,stars){
+ const id=uuid();
+ const sesi={id,nama:$('#nm').value.trim(),mulai_at:new Date(start).toISOString(),selesai_at:new Date().toISOString(),durasi_detik:e,patokan_detik:TGT,total_soal:N,jumlah_benar:st.filter(s=>s.ok).length,jumlah_habis:st.filter(s=>s.fail).length,ketepatan:r1d(kt),nilai_waktu:r1d(tf*100),nilai_akhir:r1d(nl),bintang:stars,perangkat:(navigator.userAgent||'').slice(0,300)};
+ const jaw=Qs.map((q,i)=>({sesi_id:id,soal_no:i+1,project_no:q.pi+1,project_nama:NAMES[q.pi],tingkat:q.lv,percobaan:st[i].a||0,petunjuk:st[i].h||0,benar:!!st[i].ok,habis:!!st[i].fail,waktu_detik:st[i].sec||0,skor:r1d(sq(st[i])*100),jawaban_terakhir:String(st[i].try&&st[i].try.length?st[i].try[st[i].try.length-1].jawaban:'').slice(0,2000),riwayat:st[i].try||[]}));
+ const hdr={apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json',Prefer:'return=minimal'};
+ const stat=$('#savestat');
+ const kirim=(tabel,data)=>fetch(SB_URL+'/rest/v1/'+tabel,{method:'POST',headers:hdr,body:JSON.stringify(data)}).then(r=>{if(!r.ok&&r.status!=409)throw new Error(r.status+' '+tabel);return 1});
+ kirim('excel_hots_sesi',sesi).then(()=>kirim('excel_hots_jawaban',jaw))
+  .then(()=>{if(stat)stat.textContent='✅ Jawabanmu tersimpan di server.'})
+  .catch(()=>{if(stat)stat.textContent='⚠️ Jawaban belum terkirim ke server. Tunjukkan layar ini kepada guru.'});
+}
+function finish(){if(done)return;done=true;clearInterval(tmr);const e=el(),kt=st.reduce((a,s)=>a+sq(s),0)/N*100,tf=e<=TGT?1:Math.max(.5,1-.5*(e-TGT)/TGT),nl=(1-WT)*kt+WT*tf*100,r1=x=>(Math.round(x*10)/10).toLocaleString('id-ID');
+ const stars=nl>=90?3:nl>=70?2:1,msg=nl>=90?'Luar biasa!':nl>=75?'Hebat!':nl>=60?'Bagus, terus berlatih!':'Ayo semangat, pelajari lagi ya!';
+ const rows=Qs.map((q,i)=>`<tr><td>${i+1}</td><td>${q.lv=='Mudah'?'Mudah':'HOTS'}</td><td class="n">${st[i].a}${st[i].fail?' (habis)':''}</td><td class="n">${st[i].h||0}</td><td class="n">${fmt(st[i].sec)}</td><td class="n">${Math.round(sq(st[i])*100)}%</td></tr>`).join('');
+ const r=$('#res');r.className='card';r.style.background='var(--acs)';r.style.textAlign='center';r.innerHTML=`<div class="stars" aria-label="${stars} bintang">${'⭐'.repeat(stars)}${'☆'.repeat(3-stars)}</div><h2 style="margin:.1em 0">${msg}</h2><p class="mono" style="margin:0">${esc($('#nm').value.trim())}</p><div class="score">${r1(nl)} / 100</div><p>Ketepatan ${r1(kt)} (bobot 80%) · Waktu ${r1(tf*100)} (bobot 20%)<br>Waktu pengerjaan ${fmt(e)}, patokan ${fmt(TGT)}</p><div class="sc rt" style="text-align:left"><table style="margin:0 auto"><tr><th>Soal</th><th>Tingkat</th><th>Percobaan</th><th>Petunjuk</th><th>Waktu</th><th>Skor</th></tr>${rows}</table></div><p>Pembahasan tiap soal ada di bawah.</p><p class="cap" id="savestat">⏳ Menyimpan jawaban ke server…</p>`;
+ $('#bar').classList.add('hide');document.querySelectorAll('.proj,#projs .card').forEach(e=>e.classList.remove('hide'));scrollTo(0,0);simpan(e,kt,tf,nl,stars)}
+</script>
+</body>
+</html>
