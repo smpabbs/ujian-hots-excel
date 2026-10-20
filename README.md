@@ -119,6 +119,21 @@ order by s.mulai_at desc, j.soal_no;
 - Status `berjalan` menandai siswa yang belum menekan **Kumpulkan ujian**, sehingga ujian yang terputus langsung terlihat.
 - Daftar dimuat ulang otomatis setiap 20 detik (bisa dimatikan).
 
+### Ekspor Excel
+
+Tombol **⬇ Ekspor Excel** mengunduh berkas `.xlsx` berisi dua lembar:
+
+| Lembar | Isi |
+| --- | --- |
+| **Rekap** | satu baris per siswa: status, soal terjawab, jawaban benar, nilai akhir, nilai sementara, bintang, durasi, waktu mulai dan selesai |
+| **Jawaban** | satu baris per soal per siswa: project, tingkat, bobot, percobaan, petunjuk, hasil, skor, waktu, jawaban terakhir, dan seluruh riwayat percobaan |
+
+Baris judul dibekukan dan dilengkapi penyaring otomatis (AutoFilter), jadi langsung bisa diurutkan dan disaring di Excel.
+
+Nilai akhir dan nilai sementara ditaruh di **kolom terpisah**, supaya angka sementara tidak keliru dipakai sebagai nilai final.
+
+Berkasnya dibuat langsung di dalam browser **tanpa pustaka luar**, sehingga tidak ada masalah pemisah koma/titik koma seperti pada berkas CSV.
+
 ### Mengapa aman dibuka publik
 
 Anon key di halaman ini **tidak dapat membaca tabel** — peran `anon` memang hanya diberi izin INSERT. Pembacaan hanya mungkin lewat tiga fungsi database `security definer`:
