@@ -86,6 +86,11 @@ td.nm{font-weight:650;min-width:180px}
 .prog .bar i{display:block;height:100%;background:var(--acc);border-radius:99px;transition:width .3s}
 .prog span{font-size:.84rem;color:var(--muted);font-variant-numeric:tabular-nums}
 .bintang{color:#e0a11a;letter-spacing:1px;white-space:nowrap}
+.smt{color:var(--warn);font-weight:750;white-space:nowrap}
+.smtkecil{color:var(--warn);font-weight:700}
+.legenda{color:var(--muted);font-size:.82rem}
+.nota{background:var(--warn-soft);border:1px solid var(--warn-line);color:var(--warn);
+  border-radius:10px;padding:10px 13px;font-size:.87rem;margin-bottom:15px}
 
 .kosong{padding:44px 20px;text-align:center;color:var(--muted)}
 .catatan{padding:11px 20px;font-size:.84rem;color:var(--muted);border-top:1px solid var(--line);
@@ -210,6 +215,7 @@ details code{font-family:ui-monospace,Consolas,monospace;color:var(--ink);
       <div id="isiKartu"></div>
       <div class="catatan">
         <span id="ketJumlah"></span>
+        <span class="legenda">~ nilai sementara (belum menekan Kumpulkan)</span>
         <span id="ketWaktu"></span>
       </div>
     </div>
@@ -295,12 +301,16 @@ function gambarKpi(){
   const jalan=data.filter(d=>d.status!=='selesai');
   const nilai=selesai.map(d=>Number(d.nilai_akhir)).filter(v=>Number.isFinite(v));
   const rerata=nilai.length?Number((nilai.reduce((a,b)=>a+b,0)/nilai.length).toFixed(1)):null;
+  const nilaiJalan=jalan.map(d=>Number(d.nilai_sekarang)).filter(v=>Number.isFinite(v));
+  const rerataJalan=nilaiJalan.length?Number((nilaiJalan.reduce((a,b)=>a+b,0)/nilaiJalan.length).toFixed(1)):null;
   const terjawab=data.reduce((a,d)=>a+Number(d.soal_terjawab||0),0);
   const kartu=[
     {lb:'Total siswa',ng:n,ket:'sudah menekan Mulai',k:''},
-    {lb:'Sedang mengerjakan',ng:jalan.length,ket:'belum selesai',k:'kini'},
-    {lb:'Sudah selesai',ng:selesai.length,ket:'nilai sudah masuk',k:'kbiru'},
-    {lb:'Rata-rata nilai',ng:rerata,ket:'dari '+nilai.length+' siswa',k:'kbiru'},
+    {lb:'Sedang mengerjakan',ng:jalan.length,ket:'belum menekan Kumpulkan',k:'kini'},
+    {lb:'Sudah selesai',ng:selesai.length,ket:'nilai akhir sudah masuk',k:'kbiru'},
+    rerata!=null
+      ?{lb:'Rata-rata nilai',ng:rerata,ket:'dari '+nilai.length+' siswa selesai',k:'kbiru'}
+      :{lb:'Rata-rata sementara',ng:rerataJalan,ket:'belum ada yang selesai',k:'kini'},
     {lb:'Soal terjawab',ng:terjawab,ket:'dari '+n+' siswa',k:''}
   ];
   $('#kpi').innerHTML=kartu.map(x=>`<div class="kotak kpi ${x.k}">
@@ -312,10 +322,16 @@ function urutkan(baris){
   const mode=$('#urut').value;
   const a=[...baris];
   if(mode==='nama')a.sort((x,y)=>x.nama.localeCompare(y.nama,'id'));
-  else if(mode==='nilai')a.sort((x,y)=>((y.nilai_akhir==null?-1:Number(y.nilai_akhir)))-(x.nilai_akhir==null?-1:Number(x.nilai_akhir)));
+  else if(mode==='nilai')a.sort((x,y)=>nilaiEfektif(y)-nilaiEfektif(x));
   else if(mode==='mulai')a.sort((x,y)=>new Date(y.mulai_at)-new Date(x.mulai_at));
   else a.sort((x,y)=>(Number(y.soal_terjawab)-Number(x.soal_terjawab))||x.nama.localeCompare(y.nama,'id'));
   return a;
+}
+
+function nilaiEfektif(d){
+  const v=d.status==='selesai'?d.nilai_akhir:d.nilai_sekarang;
+  const n=Number(v);
+  return Number.isFinite(n)?n:-1;
 }
 
 function barisSiswa(d){
@@ -323,13 +339,18 @@ function barisSiswa(d){
   const p=Math.min(100,Math.round(j/t*100));
   const selesai=d.status==='selesai';
   const lencana=`<span class="lencana ${selesai?'selesai':'berjalan'}">${selesai?'✓ Selesai':'⏳ Mengerjakan'}</span>`;
-  const prog=`<div class="prog"><div class="bar"><i style="width:${p}%"></i></div><span>${j}/${t}${selesai?'':' soal'}</span></div>`;
+  const prog=`<div class="prog"><div class="bar"><i style="width:${p}%"></i></div><span>${j}/${t}</span></div>`;
+  const selBenar=selesai?angka(d.jumlah_benar):(j?angka(d.benar_sekarang):'—');
+  const selNilai=selesai
+    ?`<b>${angka(d.nilai_akhir)}</b>`
+    :(j?`<span class="smt" title="Nilai sementara dari ${j} soal yang sudah dikerjakan">~${angka(d.nilai_sekarang)}</span>`
+       :'<span style="color:var(--muted)">—</span>');
   const tr=`<tr data-id="${esc(d.id)}">
       <td class="nm">${esc(d.nama)}</td>
       <td>${lencana}</td>
       <td>${prog}</td>
-      <td class="n">${selesai?angka(d.jumlah_benar):'—'}</td>
-      <td class="n">${selesai?`<b>${angka(d.nilai_akhir)}</b>`:'—'}</td>
+      <td class="n">${selBenar}</td>
+      <td class="n">${selNilai}</td>
       <td><span class="bintang">${selesai?bintangTeks(d.bintang):'—'}</span></td>
       <td class="n">${selesai?durasi(d.durasi_detik):'—'}</td>
       <td class="n">${jam(d.mulai_at)}</td>
@@ -337,7 +358,9 @@ function barisSiswa(d){
   const kaki=selesai
     ? `<span>Nilai <b>${angka(d.nilai_akhir)}</b></span><span>Benar <b>${angka(d.jumlah_benar)}</b></span>
        <span>Durasi <b>${durasi(d.durasi_detik)}</b></span><span>Bintang <b class="bintang">${bintangTeks(d.bintang)}</b></span>`
-    : `<span>Mulai <b>${jam(d.mulai_at)}</b></span><span>Nilai <b>—</b> (belum selesai)</span>`;
+    : `<span>Nilai sementara <b class="smtkecil">${j?'~'+angka(d.nilai_sekarang):'—'}</b></span>
+       <span>Benar <b>${j?angka(d.benar_sekarang):'—'}</b> dari ${j} soal</span>
+       <span>Mulai <b>${jam(d.mulai_at)}</b></span>`;
   const kartu=`<article class="ks" data-id="${esc(d.id)}">
       <div class="atas"><span class="nm">${esc(d.nama)}</span>${lencana}</div>
       ${prog}<div class="kaki">${kaki}</div>
@@ -375,15 +398,18 @@ async function buka(id){
   try{ jw=await rpc('excel_hots_jawaban_guru',{p_kunci:kunci,p_sesi:id}) }catch(e){
     $('#pIsi').innerHTML=`<div class="kosong">Gagal memuat jawaban: ${esc(e.message)}</div>`;return;
   }
+  const terjawab=Number(d.soal_terjawab)||0,total=Number(d.total_soal)||20;
   const sk=[
-    ['Nilai akhir',selesai?angka(d.nilai_akhir):'—'],
+    [selesai?'Nilai akhir':'Nilai sementara',selesai?angka(d.nilai_akhir):(terjawab?angka(d.nilai_sekarang):'—')],
+    ['Soal terjawab',terjawab+' / '+total],
+    ['Benar',terjawab?(angka(selesai?d.jumlah_benar:d.benar_sekarang)+' / '+terjawab):'—'],
     ['Ketepatan',selesai?angka(d.ketepatan):'—'],
     ['Nilai waktu',selesai?angka(d.nilai_waktu):'—'],
-    ['Soal terjawab',Number(d.soal_terjawab)+' / '+(Number(d.total_soal)||20)],
-    ['Benar',selesai?angka(d.jumlah_benar):'—'],
     ['Durasi',selesai?durasi(d.durasi_detik):'—']
   ];
   let html='<div class="sk">'+sk.map(x=>`<div class="kotak b"><div class="lb">${x[0]}</div><div class="ng">${x[1]}</div></div>`).join('')+'</div>';
+  if(!selesai)html+=`<div class="nota">Siswa ini belum menekan <b>Kumpulkan ujian</b>. Angka di atas masih sementara,
+    dihitung dari ${terjawab} soal yang sudah dikerjakan${terjawab?' (rata-rata '+angka(d.nilai_sekarang)+'%)':''}.</div>`;
 
   if(!jw.length){
     html+='<div class="kosong">Belum ada soal yang diselesaikan siswa ini.</div>';
