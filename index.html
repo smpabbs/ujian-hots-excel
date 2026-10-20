@@ -52,7 +52,7 @@ tr:nth-child(2) td{background:var(--hd);font-weight:700}td.n{text-align:right;fo
 </style>
 </head>
 <body>
-<div class="bar hide" id="bar"><div class="bl"><span class="who" id="who"></span><span id="prog"></span></div><div class="trk" id="trk" aria-hidden="true"></div><div class="tm">⏱ <b id="tm">00:00</b><span class="cap">patokan <span id="tg"></span></span></div></div>
+<div class="bar hide" id="bar"><div class="bl"><span class="who" id="who"></span><span id="prog"></span><span id="net" class="cap"></span></div><div class="trk" id="trk" aria-hidden="true"></div><div class="tm">⏱ <b id="tm">00:00</b><span class="cap">patokan <span id="tg"></span></span></div></div>
 <main>
 <section id="intro">
 <div class="hero"><div class="em" aria-hidden="true">📗</div><h1>Ayo Jago Excel!</h1><p class="sub">Bismillah, siap berlatih rumus? Ujian ini terdiri dari <b>5 project dan 20 soal</b>: fungsi dasar, IF, tanda $, VLOOKUP/HLOOKUP, dan gabungan.</p></div>
@@ -63,7 +63,7 @@ tr:nth-child(2) td{background:var(--hd);font-weight:700}td.n{text-align:right;fo
 <div class="rc"><h3>💡 Petunjuk</h3><ul><li>Tiap soal punya hingga dua petunjuk bertahap.</li><li>Memakai petunjuk mengurangi nilai soal itu: 1 petunjuk ×0,85 dan 2 petunjuk ×0,7.</li></ul></div>
 <div class="rc"><h3>⏱ Waktu</h3><ul><li>Timer berjalan naik dari 00:00 saat kamu klik Mulai ujian. <b>Tidak ada batas waktu.</b></li><li>Total waktu dicatat dan ikut jadi bahan penilaian. Patokan 3 menit per soal, jadi 60 menit untuk 20 soal.</li></ul></div>
 <div class="rc"><h3>⭐ Nilai akhir</h3><ul><li>80% ketepatan (percobaan dan petunjuk) + 20% waktu.</li><li>Selesai dalam patokan = nilai waktu 100%. Lewat patokan, nilai waktu turun bertahap, paling rendah 50%.</li></ul></div>
-<div class="rc"><h3>🙏 Penting</h3><ul><li>Jangan menutup atau me-refresh halaman. Pekerjaanmu akan hilang.</li><li>Kerjakan sendiri dengan jujur. Nilai langsung tampil setelah soal terakhir.</li></ul></div>
+<div class="rc"><h3>🙏 Penting</h3><ul><li>Jawabanmu <b>tersimpan otomatis</b> ke server setiap kali satu soal selesai, jadi tidak hilang bila koneksi sempat putus.</li><li>Meski begitu, jangan menutup atau me-refresh halaman agar ujian tidak terputus di tengah jalan.</li><li>Kerjakan sendiri dengan jujur. Nilai langsung tampil setelah soal terakhir.</li></ul></div>
 </div>
 <div class="card"><label class="l" for="nm">Namamu</label><input type="text" id="nm" autocomplete="name" placeholder="Tulis nama lengkap">
 <label class="opt" style="margin-top:12px"><input type="checkbox" id="ag"><span>Saya sudah membaca dan memahami aturan di atas.</span></label>
@@ -188,7 +188,7 @@ Qs.forEach((q,i)=>pips(i));
 function open(i){cur=i;const q=Qs[i];document.querySelectorAll('.proj').forEach((e,k)=>e.classList.toggle('hide',k!=q.pi));$('#q'+i).classList.remove('hide');document.querySelectorAll('.steps .chip').forEach((b,k)=>b.classList.toggle('on',k==q.pi));if(!st[i].t0)st[i].t0=Date.now();if(i==0||Qs[i-1].pi!=q.pi)scrollTo(0,0);else $('#q'+i).scrollIntoView({behavior:'smooth'});upd()}
 document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.h!=null)hint(+b.dataset.h);if(b.dataset.c!=null)check(+b.dataset.c);if(b.dataset.nx!=null){const i=+b.dataset.nx;i==N-1?finish():open(i+1)}});
 function hint(i){const s=st[i],q=Qs[i];s.h=Math.min((s.h||0)+1,q.h.length);$('#h'+i).innerHTML=q.h.slice(0,s.h).map((x,j)=>`<div class="box hint"><b>💡 Petunjuk ${j+1}:</b> ${x}</div>`).join('');const b=document.querySelector(`[data-h="${i}"]`);b.textContent=s.h<q.h.length?`💡 Petunjuk ${s.h+1}`:'Petunjuk habis';b.disabled=s.h>=q.h.length}
-function lock(i){const q=Qs[i],s=st[i];s.done=1;s.sec=Math.round((Date.now()-s.t0)/1000);document.querySelectorAll(`#q${i} input,#q${i} textarea,#q${i} button`).forEach(b=>b.disabled=true);$('#nx'+i).innerHTML=`<div class="row"><button class="p" data-nx="${i}">${i==N-1?'🏁 Kumpulkan ujian':Qs[i+1].pi!=q.pi?'➡️ Lanjut ke project berikutnya':'➡️ Soal berikutnya'}</button></div>`}
+function lock(i){const q=Qs[i],s=st[i];s.done=1;s.sec=Math.round((Date.now()-s.t0)/1000);document.querySelectorAll(`#q${i} input,#q${i} textarea,#q${i} button`).forEach(b=>b.disabled=true);$('#nx'+i).innerHTML=`<div class="row"><button class="p" data-nx="${i}">${i==N-1?'🏁 Kumpulkan ujian':Qs[i+1].pi!=q.pi?'➡️ Lanjut ke project berikutnya':'➡️ Soal berikutnya'}</button></div>`;simpanSoal(i)}
 function check(i){const q=Qs[i],s=st[i];if(s.done)return;let msg='',ans=false,jw='';
  if(q.mc){const r=document.querySelector(`input[name="r${i}"]:checked`);if(r){ans=true;const o=q.o[+r.value];jw=o[0];if(!o[1])msg=o[2]}}
  else{const raw=$('#a'+i).value;if(raw.trim()){ans=true;jw=raw.trim();msg=q.c(raw)}}
@@ -204,26 +204,51 @@ const fmt=t=>String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(
 const el=()=>Math.round((Date.now()-start)/1000);
 function tick(){$('#tm').textContent=fmt(el());$('#bar').classList.toggle('low',el()>TGT)}
 $('#tg').textContent=fmt(TGT);const gate=()=>$('#go').disabled=!($('#ag').checked&&$('#nm').value.trim());$('#ag').onchange=gate;$('#nm').oninput=gate;
-$('#go').onclick=()=>{$('#intro').classList.add('hide');$('#exam').classList.remove('hide');$('#bar').classList.remove('hide');$('#who').textContent='👤 '+$('#nm').value.trim();start=Date.now();tick();tmr=setInterval(tick,1000);open(0)};
+$('#go').onclick=()=>{$('#intro').classList.add('hide');$('#exam').classList.remove('hide');$('#bar').classList.remove('hide');$('#who').textContent='👤 '+$('#nm').value.trim();start=Date.now();tick();tmr=setInterval(tick,1000);mulaiSesi();open(0)};
 const sq=s=>s.fail?0:Math.max(0,1-.1*(s.a-1))*[1,.85,.7][Math.min(s.h||0,2)];
 const r1d=x=>Math.round(x*10)/10;
 const uuid=()=>{try{if(window.crypto&&crypto.randomUUID)return crypto.randomUUID()}catch(e){}return'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c=='x'?r:(r&3|8)).toString(16)})};
-function simpan(e,kt,tf,nl,stars){
- const id=uuid();
- const sesi={id,nama:$('#nm').value.trim(),mulai_at:new Date(start).toISOString(),selesai_at:new Date().toISOString(),durasi_detik:e,patokan_detik:TGT,total_soal:N,jumlah_benar:st.filter(s=>s.ok).length,jumlah_habis:st.filter(s=>s.fail).length,ketepatan:r1d(kt),nilai_waktu:r1d(tf*100),nilai_akhir:r1d(nl),bintang:stars,perangkat:(navigator.userAgent||'').slice(0,300)};
- const jaw=Qs.map((q,i)=>({sesi_id:id,soal_no:i+1,project_no:q.pi+1,project_nama:NAMES[q.pi],tingkat:q.lv,percobaan:st[i].a||0,petunjuk:st[i].h||0,benar:!!st[i].ok,habis:!!st[i].fail,waktu_detik:st[i].sec||0,skor:r1d(sq(st[i])*100),jawaban_terakhir:String(st[i].try&&st[i].try.length?st[i].try[st[i].try.length-1].jawaban:'').slice(0,2000),riwayat:st[i].try||[]}));
- const hdr={apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json',Prefer:'return=minimal'};
+let SESI_ID=null,sesiTersimpan=false,sesiJanji=null;
+const net=ok=>{const t=$('#net');if(t){t.textContent=ok?'☁️ tersimpan':'⚠️ belum tersimpan';t.style.color=ok?'':'var(--bad)'}};
+async function kirim(tabel,data){
+ const r=await fetch(SB_URL+'/rest/v1/'+tabel,{method:'POST',headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(Array.isArray(data)?data:[data])});
+ if(r.ok)return 1;
+ const teks=await r.text();
+ if(teks.includes('23505'))return 1;
+ throw new Error(r.status+' '+tabel+' '+teks.slice(0,140));
+}
+function mulaiSesi(){
+ if(sesiJanji)return sesiJanji;
+ SESI_ID=SESI_ID||uuid();
+ sesiJanji=kirim('excel_hots_sesi',{id:SESI_ID,nama:$('#nm').value.trim(),mulai_at:new Date(start).toISOString(),total_soal:N,patokan_detik:TGT,perangkat:(navigator.userAgent||'').slice(0,300)})
+  .then(()=>{sesiTersimpan=true;net(true)},()=>{sesiJanji=null;net(false)});
+ return sesiJanji;
+}
+function dataSoal(i){const q=Qs[i],s=st[i];return{sesi_id:SESI_ID,soal_no:i+1,project_no:q.pi+1,project_nama:NAMES[q.pi],tingkat:q.lv,percobaan:s.a||0,petunjuk:s.h||0,benar:!!s.ok,habis:!!s.fail,waktu_detik:s.sec||0,skor:r1d(sq(s)*100),jawaban_terakhir:String(s.try&&s.try.length?s.try[s.try.length-1].jawaban:'').slice(0,2000),riwayat:s.try||[]}}
+async function simpanSoal(i){
+ try{
+  if(!sesiTersimpan)await mulaiSesi();
+  await kirim('excel_hots_jawaban',dataSoal(i));
+  net(true);
+ }catch(e){net(false)}
+}
+async function selesaikan(e,kt,tf,nl,stars){
  const stat=$('#savestat');
- const kirim=(tabel,data)=>fetch(SB_URL+'/rest/v1/'+tabel,{method:'POST',headers:hdr,body:JSON.stringify(data)}).then(r=>{if(!r.ok&&r.status!=409)throw new Error(r.status+' '+tabel);return 1});
- kirim('excel_hots_sesi',sesi).then(()=>kirim('excel_hots_jawaban',jaw))
-  .then(()=>{if(stat)stat.textContent='✅ Jawabanmu tersimpan di server.'})
-  .catch(()=>{if(stat)stat.textContent='⚠️ Jawaban belum terkirim ke server. Tunjukkan layar ini kepada guru.'});
+ try{
+  if(!sesiTersimpan)await mulaiSesi();
+  await kirim('excel_hots_selesai',{sesi_id:SESI_ID,selesai_at:new Date().toISOString(),durasi_detik:e,jumlah_benar:st.filter(s=>s.ok).length,jumlah_habis:st.filter(s=>s.fail).length,ketepatan:r1d(kt),nilai_waktu:r1d(tf*100),nilai_akhir:r1d(nl),bintang:stars});
+  net(true);
+  if(stat)stat.textContent='✅ Semua jawabanmu tersimpan di server.';
+ }catch(err){
+  net(false);
+  if(stat)stat.textContent='⚠️ Ada jawaban yang belum terkirim ke server. Tunjukkan layar ini kepada guru.';
+ }
 }
 function finish(){if(done)return;done=true;clearInterval(tmr);const e=el(),kt=st.reduce((a,s)=>a+sq(s),0)/N*100,tf=e<=TGT?1:Math.max(.5,1-.5*(e-TGT)/TGT),nl=(1-WT)*kt+WT*tf*100,r1=x=>(Math.round(x*10)/10).toLocaleString('id-ID');
  const stars=nl>=90?3:nl>=70?2:1,msg=nl>=90?'Luar biasa!':nl>=75?'Hebat!':nl>=60?'Bagus, terus berlatih!':'Ayo semangat, pelajari lagi ya!';
  const rows=Qs.map((q,i)=>`<tr><td>${i+1}</td><td>${q.lv=='Mudah'?'Mudah':'HOTS'}</td><td class="n">${st[i].a}${st[i].fail?' (habis)':''}</td><td class="n">${st[i].h||0}</td><td class="n">${fmt(st[i].sec)}</td><td class="n">${Math.round(sq(st[i])*100)}%</td></tr>`).join('');
  const r=$('#res');r.className='card';r.style.background='var(--acs)';r.style.textAlign='center';r.innerHTML=`<div class="stars" aria-label="${stars} bintang">${'⭐'.repeat(stars)}${'☆'.repeat(3-stars)}</div><h2 style="margin:.1em 0">${msg}</h2><p class="mono" style="margin:0">${esc($('#nm').value.trim())}</p><div class="score">${r1(nl)} / 100</div><p>Ketepatan ${r1(kt)} (bobot 80%) · Waktu ${r1(tf*100)} (bobot 20%)<br>Waktu pengerjaan ${fmt(e)}, patokan ${fmt(TGT)}</p><div class="sc rt" style="text-align:left"><table style="margin:0 auto"><tr><th>Soal</th><th>Tingkat</th><th>Percobaan</th><th>Petunjuk</th><th>Waktu</th><th>Skor</th></tr>${rows}</table></div><p>Pembahasan tiap soal ada di bawah.</p><p class="cap" id="savestat">⏳ Menyimpan jawaban ke server…</p>`;
- $('#bar').classList.add('hide');document.querySelectorAll('.proj,#projs .card').forEach(e=>e.classList.remove('hide'));scrollTo(0,0);simpan(e,kt,tf,nl,stars)}
+ $('#bar').classList.add('hide');document.querySelectorAll('.proj,#projs .card').forEach(e=>e.classList.remove('hide'));scrollTo(0,0);selesaikan(e,kt,tf,nl,stars)}
 </script>
 </body>
 </html>
