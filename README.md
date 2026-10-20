@@ -19,6 +19,30 @@ Semua soal dikerjakan di browser. Hasil tiap siswa otomatis dikirim dan disimpan
 4. Setiap kali satu soal selesai, jawabannya **langsung dikirim ke server**, jadi jawaban tetap aman meskipun koneksi putus atau halaman tertutup di tengah ujian.
 5. Setelah soal ke-20, nilai akhir tampil dan ujian ditandai **selesai**.
 
+## Cara penilaian
+
+Nilai akhir = **80% ketepatan + 20% waktu**.
+
+**Ketepatan** dihitung dari rata-rata **berbobot** skor 20 soal. Skor tiap soal ditentukan percobaan dan petunjuk:
+
+- percobaan ke-1 = 100%, ke-2 = 90%, … ke-10 = 10%; kehabisan kesempatan = 0
+- dikalikan pengali petunjuk: 0 petunjuk ×1 · 1 petunjuk ×0,85 · 2 petunjuk ×0,7
+
+**Bobot soal mengikuti tingkat kesulitan** (tersimpan di kolom `bobot` pada `excel_hots_jawaban`):
+
+| Tingkat | Jumlah soal | Bobot | Nilai akhir per soal |
+| --- | --- | --- | --- |
+| Mudah | 6 | 1× | 2,3 poin |
+| HOTS · Menganalisis | 4 | 1,5× | 3,5 poin |
+| HOTS · Mengevaluasi | 5 | 2× | 4,6 poin |
+| HOTS · Mencipta | 5 | 2,5× | 5,8 poin |
+
+Total 20 soal = **80 poin** ketepatan.
+
+**Waktu** bernilai **20 poin**. Selesai dalam patokan 60 menit (3 menit × 20 soal) bernilai penuh; lewat patokan turun bertahap, paling rendah 10 poin.
+
+Bobot disimpan **per baris jawaban**, bukan sebagai angka tetap di dalam program. Jadi bobot bisa diubah tanpa merusak nilai sesi yang sudah berjalan: jawaban lama tetap bernilai 1×, jawaban yang dikirim setelah pembobotan memakai bobot barunya.
+
 ## Penyimpanan hasil
 
 Hasil disimpan di **Supabase** (project `fsrfvkaqbhfuptsooxiv`, berbagi dengan project AVATAR). Tabel dan view berikut dibuat khusus untuk ujian ini dan **tidak mengganggu tabel AVATAR** yang sudah ada.
@@ -47,6 +71,7 @@ Jawaban dikirim **bertahap**, bukan sekaligus di akhir:
 | --- | --- |
 | `sesi_id`, `soal_no` | Penghubung ke sesi dan nomor soal |
 | `project_no`, `project_nama`, `tingkat` | Project dan tingkat kesulitan soal |
+| `bobot` | Bobot soal menurut tingkat kesulitan (1 / 1,5 / 2 / 2,5) |
 | `percobaan`, `petunjuk` | Berapa kali mencoba dan berapa petunjuk dipakai |
 | `benar`, `habis` | Benar atau kehabisan kesempatan |
 | `waktu_detik`, `skor` | Waktu dan nilai soal tersebut |

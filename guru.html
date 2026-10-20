@@ -427,7 +427,7 @@ async function buka(id){
             <div class="tag">${esc(r.project_nama||'')}${r.tingkat?' · '+esc(r.tingkat):''}</div></div>
           <div style="text-align:right;font-size:.83rem;color:var(--muted)">
             <b style="color:${r.habis?'var(--bad)':'var(--acc)'}">${ket}</b><br>
-            percobaan ${r.percobaan} · petunjuk ${r.petunjuk} · skor ${angka(r.skor)}%
+            percobaan ${r.percobaan} · petunjuk ${r.petunjuk} · bobot ${angka(r.bobot)}× · skor ${angka(r.skor)}%
           </div>
         </div>
         <div class="jw">${esc(r.jawaban_terakhir)||'<i>(kosong)</i>'}</div>
