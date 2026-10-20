@@ -9,6 +9,7 @@ Semua soal dikerjakan di browser. Hasil tiap siswa otomatis dikirim dan disimpan
 | Berkas | Keterangan |
 | --- | --- |
 | `index.html` | Seluruh aplikasi ujian (HTML + CSS + JavaScript dalam satu berkas). Tidak perlu build, tidak memakai framework. |
+| `guru.html` | Halaman pemantauan untuk guru: progres tiap siswa secara langsung. Dilindungi kunci guru. |
 
 ## Cara memakai
 
@@ -81,6 +82,38 @@ select s.nama, j.soal_no, j.project_nama, j.percobaan, j.skor, j.jawaban_terakhi
 from excel_hots_jawaban j
 join excel_hots_sesi s on s.id = j.sesi_id
 order by s.mulai_at desc, j.soal_no;
+```
+
+## Halaman pemantauan guru
+
+`guru.html` — dasbor untuk mengikuti progres siswa selagi ujian berlangsung.
+
+- Alamat: `https://smpabbs.github.io/ujian-hots-excel/guru.html`
+- Dilindungi **kunci guru**: diminta sekali saat dibuka, lalu disimpan di browser (tombol **Keluar** untuk melupakannya).
+- Isinya: ringkasan (jumlah siswa, sedang mengerjakan, sudah selesai, rata-rata nilai, soal terjawab), daftar siswa yang bisa dicari dan diurutkan, serta rincian tiap soal beserta seluruh riwayat percobaan siswa.
+- Status `berjalan` menandai siswa yang belum menekan **Kumpulkan ujian**, sehingga ujian yang terputus langsung terlihat.
+- Daftar dimuat ulang otomatis setiap 20 detik (bisa dimatikan).
+
+### Mengapa aman dibuka publik
+
+Anon key di halaman ini **tidak dapat membaca tabel** — peran `anon` memang hanya diberi izin INSERT. Pembacaan hanya mungkin lewat tiga fungsi database `security definer`:
+
+| Fungsi | Kegunaan |
+| --- | --- |
+| `excel_hots_cek_kunci(p_kunci)` | memeriksa kunci guru, mengembalikan benar/salah |
+| `excel_hots_rekap_guru(p_kunci)` | daftar siswa beserta progres dan nilainya |
+| `excel_hots_jawaban_guru(p_kunci, p_sesi)` | rincian jawaban satu siswa |
+
+Ketiganya hanya mengembalikan data bila `p_kunci` cocok dengan hash bcrypt di tabel `excel_hots_guru`. Tabel itu tertutup rapat: RLS aktif dan tidak ada izin apa pun untuk `anon`, sehingga kunci hanya bisa diperiksa lewat fungsi, tidak pernah bisa dibaca.
+
+### Mengganti kunci guru
+
+Jalankan di SQL Editor Supabase (ganti `KUNCI_BARU` dengan kunci baru):
+
+```sql
+update excel_hots_guru
+set kunci_hash = extensions.crypt('KUNCI_BARU', extensions.gen_salt('bf', 10))
+where id = 1;
 ```
 
 ## Catatan keamanan

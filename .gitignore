@@ -1,6 +1,9 @@
 # konfigurasi agen lokal
 .commandcode/
 
+# tangkapan layar kerja
+mockup/
+
 # berkas sistem
 Thumbs.db
 desktop.ini
