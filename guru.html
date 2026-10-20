@@ -216,7 +216,7 @@ details code{font-family:ui-monospace,Consolas,monospace;color:var(--ink);
       <div id="isiKartu"></div>
       <div class="catatan">
         <span id="ketJumlah"></span>
-        <span class="legenda">~ nilai sementara (belum menekan Kumpulkan)</span>
+        <span class="legenda" id="legenda"></span>
         <span id="ketWaktu"></span>
       </div>
     </div>
@@ -302,7 +302,7 @@ function gambarKpi(){
   const jalan=data.filter(d=>d.status!=='selesai');
   const nilai=selesai.map(d=>Number(d.nilai_akhir)).filter(v=>Number.isFinite(v));
   const rerata=nilai.length?Number((nilai.reduce((a,b)=>a+b,0)/nilai.length).toFixed(1)):null;
-  const nilaiJalan=jalan.map(d=>Number(d.nilai_sekarang)).filter(v=>Number.isFinite(v));
+  const nilaiJalan=jalan.filter(d=>Number(d.soal_terjawab)>0).map(d=>Number(d.nilai_berjalan)).filter(v=>Number.isFinite(v));
   const rerataJalan=nilaiJalan.length?Number((nilaiJalan.reduce((a,b)=>a+b,0)/nilaiJalan.length).toFixed(1)):null;
   const terjawab=data.reduce((a,d)=>a+Number(d.soal_terjawab||0),0);
   const kartu=[
@@ -311,12 +311,14 @@ function gambarKpi(){
     {lb:'Sudah selesai',ng:selesai.length,ket:'nilai akhir sudah masuk',k:'kbiru'},
     rerata!=null
       ?{lb:'Rata-rata nilai',ng:rerata,ket:'dari '+nilai.length+' siswa selesai',k:'kbiru'}
-      :{lb:'Rata-rata sementara',ng:rerataJalan,ket:'belum ada yang selesai',k:'kini'},
+      :{lb:'Rata-rata sementara',ng:rerataJalan,ket:'nilai berjalan '+nilaiJalan.length+' siswa',k:'kini'},
     {lb:'Soal terjawab',ng:terjawab,ket:'dari '+n+' siswa',k:''}
   ];
   $('#kpi').innerHTML=kartu.map(x=>`<div class="kotak kpi ${x.k}">
     <div class="lb">${x.lb}</div><div class="ng">${angka(x.ng)}</div><div class="ket">${x.ket}</div></div>`).join('');
   $('#ketJumlah').textContent=`Menampilkan ${data.length} siswa`;
+  $('#legenda').textContent=jalan.length?'~ nilai berjalan: perkiraan nilai bila ujian berhenti sekarang':'';
+  $('#legenda').title='Nilai berjalan memakai hitungan yang sama dengan nilai akhir (soal yang belum dikerjakan dihitung 0), jadi angkanya hanya naik dan akhirnya menyamai nilai akhir.';
 }
 
 function urutkan(baris){
@@ -330,7 +332,7 @@ function urutkan(baris){
 }
 
 function nilaiEfektif(d){
-  const v=d.status==='selesai'?d.nilai_akhir:d.nilai_sekarang;
+  const v=d.status==='selesai'?d.nilai_akhir:d.nilai_berjalan;
   const n=Number(v);
   return Number.isFinite(n)?n:-1;
 }
@@ -344,7 +346,7 @@ function barisSiswa(d){
   const selBenar=selesai?angka(d.jumlah_benar):(j?angka(d.benar_sekarang):'—');
   const selNilai=selesai
     ?`<b>${angka(d.nilai_akhir)}</b>`
-    :(j?`<span class="smt" title="Nilai sementara dari ${j} soal yang sudah dikerjakan">~${angka(d.nilai_sekarang)}</span>`
+    :(j?`<span class="smt" title="Nilai berjalan — perkiraan bila ujian berhenti sekarang">~${angka(d.nilai_berjalan)}</span>`
        :'<span style="color:var(--muted)">—</span>');
   const tr=`<tr data-id="${esc(d.id)}">
       <td class="nm">${esc(d.nama)}</td>
@@ -359,7 +361,7 @@ function barisSiswa(d){
   const kaki=selesai
     ? `<span>Nilai <b>${angka(d.nilai_akhir)}</b></span><span>Benar <b>${angka(d.jumlah_benar)}</b></span>
        <span>Durasi <b>${durasi(d.durasi_detik)}</b></span><span>Bintang <b class="bintang">${bintangTeks(d.bintang)}</b></span>`
-    : `<span>Nilai sementara <b class="smtkecil">${j?'~'+angka(d.nilai_sekarang):'—'}</b></span>
+    : `<span>Nilai berjalan <b class="smtkecil">${j?'~'+angka(d.nilai_berjalan):'—'}</b></span>
        <span>Benar <b>${j?angka(d.benar_sekarang):'—'}</b> dari ${j} soal</span>
        <span>Mulai <b>${jam(d.mulai_at)}</b></span>`;
   const kartu=`<article class="ks" data-id="${esc(d.id)}">
@@ -401,16 +403,20 @@ async function buka(id){
   }
   const terjawab=Number(d.soal_terjawab)||0,total=Number(d.total_soal)||20;
   const sk=[
-    [selesai?'Nilai akhir':'Nilai sementara',selesai?angka(d.nilai_akhir):(terjawab?angka(d.nilai_sekarang):'—')],
+    [selesai?'Nilai akhir':'Nilai berjalan',selesai?angka(d.nilai_akhir):(terjawab?angka(d.nilai_berjalan):'—')],
     ['Soal terjawab',terjawab+' / '+total],
     ['Benar',terjawab?(angka(selesai?d.jumlah_benar:d.benar_sekarang)+' / '+terjawab):'—'],
+    ['Rata-rata soal terjawab',terjawab?angka(d.nilai_sekarang):'—'],
     ['Ketepatan',selesai?angka(d.ketepatan):'—'],
     ['Nilai waktu',selesai?angka(d.nilai_waktu):'—'],
     ['Durasi',selesai?durasi(d.durasi_detik):'—']
   ];
   let html='<div class="sk">'+sk.map(x=>`<div class="kotak b"><div class="lb">${x[0]}</div><div class="ng">${x[1]}</div></div>`).join('')+'</div>';
-  if(!selesai)html+=`<div class="nota">Siswa ini belum menekan <b>Kumpulkan ujian</b>. Angka di atas masih sementara,
-    dihitung dari ${terjawab} soal yang sudah dikerjakan${terjawab?' (rata-rata '+angka(d.nilai_sekarang)+'%)':''}.</div>`;
+  if(!selesai)html+=`<div class="nota">Siswa ini belum menekan <b>Kumpulkan ujian</b>.
+    <b>Nilai berjalan</b> adalah perkiraan bila ujian berhenti sekarang — soal yang belum dikerjakan dihitung 0,
+    jadi angkanya hanya akan naik sampai menyamai nilai akhir.
+    Sedangkan <b>rata-rata soal terjawab</b> (${angka(d.nilai_sekarang)}) hanya dihitung dari ${terjawab} soal yang sudah
+    dikerjakan, sehingga bisa tampak lebih tinggi dan tidak sebanding dengan nilai akhir.</div>`;
 
   if(!jw.length){
     html+='<div class="kosong">Belum ada soal yang diselesaikan siswa ini.</div>';
@@ -573,7 +579,7 @@ async function eksporExcel(){
     });
 
     const rekap=[
-      ['No','Nama','Status','Soal terjawab','Total soal','Jawaban benar','Nilai akhir','Nilai sementara','Bintang','Durasi (detik)','Mulai','Selesai']
+      ['No','Nama','Status','Soal terjawab','Total soal','Jawaban benar','Nilai akhir','Nilai berjalan','Bintang','Durasi (detik)','Mulai','Selesai']
     ];
     daftar.forEach((d,i)=>{
       const selesai=d.status==='selesai';
@@ -584,7 +590,7 @@ async function eksporExcel(){
         Number(d.total_soal)||20,
         selesai?(Number(d.jumlah_benar)||0):(Number(d.benar_sekarang)||0),
         selesai?Number(d.nilai_akhir):'',
-        selesai?'':(Number(d.soal_terjawab)?Number(d.nilai_sekarang):''),
+        selesai?'':(Number(d.soal_terjawab)?Number(d.nilai_berjalan):''),
         selesai?(Number(d.bintang)||0):'',
         selesai?(Number(d.durasi_detik)||0):'',
         waktuTex(d.mulai_at), waktuTex(d.selesai_at)

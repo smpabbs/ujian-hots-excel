@@ -223,7 +223,7 @@ async function kirim(tabel,data){
 function mulaiSesi(){
  if(sesiJanji)return sesiJanji;
  SESI_ID=SESI_ID||uuid();
- sesiJanji=kirim('excel_hots_sesi',{id:SESI_ID,nama:$('#nm').value.trim(),mulai_at:new Date(start).toISOString(),total_soal:N,patokan_detik:TGT,perangkat:(navigator.userAgent||'').slice(0,300)})
+ sesiJanji=kirim('excel_hots_sesi',{id:SESI_ID,nama:$('#nm').value.trim(),mulai_at:new Date(start).toISOString(),total_soal:N,patokan_detik:TGT,total_bobot:TOTAL_BOBOT,perangkat:(navigator.userAgent||'').slice(0,300)})
   .then(()=>{sesiTersimpan=true;net(true)},()=>{sesiJanji=null;net(false)});
  return sesiJanji;
 }

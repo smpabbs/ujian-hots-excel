@@ -117,6 +117,7 @@ order by s.mulai_at desc, j.soal_no;
 - Dilindungi **kunci guru**: diminta sekali saat dibuka, lalu disimpan di browser (tombol **Keluar** untuk melupakannya).
 - Isinya: ringkasan (jumlah siswa, sedang mengerjakan, sudah selesai, rata-rata nilai, soal terjawab), daftar siswa yang bisa dicari dan diurutkan, serta rincian tiap soal beserta seluruh riwayat percobaan siswa.
 - Status `berjalan` menandai siswa yang belum menekan **Kumpulkan ujian**, sehingga ujian yang terputus langsung terlihat.
+- Untuk siswa yang belum selesai ditampilkan **nilai berjalan** (tanda `~`), yaitu perkiraan nilai **bila ujian berhenti sekarang**: soal yang belum dikerjakan dihitung 0 dan komponen waktu dihitung dari waktu berjalan. Karena memakai rumus yang sama dengan nilai akhir, angkanya hanya naik dan akhirnya **menyamai nilai akhir** saat siswa menekan Kumpulkan. (Angka "rata-rata soal terjawab" yang dulu dipakai bisa tampak tinggi di awal — misalnya `~100` padahal baru 3 soal dari 20 — karena hanya menghitung soal yang sudah dikerjakan; angka itu kini hanya ditampilkan di panel rincian sebagai keterangan tambahan.)
 - Daftar dimuat ulang otomatis setiap 20 detik (bisa dimatikan).
 
 ### Ekspor Excel
@@ -125,12 +126,12 @@ Tombol **⬇ Ekspor Excel** mengunduh berkas `.xlsx` berisi dua lembar:
 
 | Lembar | Isi |
 | --- | --- |
-| **Rekap** | satu baris per siswa: status, soal terjawab, jawaban benar, nilai akhir, nilai sementara, bintang, durasi, waktu mulai dan selesai |
+| **Rekap** | satu baris per siswa: status, soal terjawab, jawaban benar, nilai akhir, nilai berjalan, bintang, durasi, waktu mulai dan selesai |
 | **Jawaban** | satu baris per soal per siswa: project, tingkat, bobot, percobaan, petunjuk, hasil, skor, waktu, jawaban terakhir, dan seluruh riwayat percobaan |
 
 Baris judul dibekukan dan dilengkapi penyaring otomatis (AutoFilter), jadi langsung bisa diurutkan dan disaring di Excel.
 
-Nilai akhir dan nilai sementara ditaruh di **kolom terpisah**, supaya angka sementara tidak keliru dipakai sebagai nilai final.
+Nilai akhir dan nilai berjalan ditaruh di **kolom terpisah**, supaya perkiraan nilai siswa yang belum selesai tidak keliru dipakai sebagai nilai final.
 
 Berkasnya dibuat langsung di dalam browser **tanpa pustaka luar**, sehingga tidak ada masalah pemisah koma/titik koma seperti pada berkas CSV.
 
